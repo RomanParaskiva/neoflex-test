@@ -18,7 +18,7 @@ export default function Home() {
   },[])
 
   const addToCart = (item: Item) => {
-    setCart(() => [...cart, item])
+    setCart(() => [...new Set([...cart, item])])
 
     localStorage.setItem("cart", JSON.stringify([...cart, item]))
   }

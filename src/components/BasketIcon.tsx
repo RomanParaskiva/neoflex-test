@@ -2,7 +2,7 @@ import React from "react";
 
 const BasketIcon = ({ items }: { items: number }) => {
   return (
-    <div>
+    <div className="cursor-pointer">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="60"

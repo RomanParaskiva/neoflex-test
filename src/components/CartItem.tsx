@@ -8,23 +8,28 @@ interface IProps {
   changeTotal: (price: number) => void;
 }
 const CartItem = ({ item, deleteItem, changeTotal }: IProps) => {
-  const [count, setCount] = useState(1)
-
+  const [count, setCount] = useState(1);
 
   const inc = () => {
-    setCount(prev => prev + 1)
-    const total = localStorage.getItem("total")
-    localStorage.setItem("total", JSON.stringify(total ? +total + item.price : item.price))
-    changeTotal(total ? +total + item.price : item.price)
-  }
+    setCount((prev) => prev + 1);
+    const total = localStorage.getItem("total");
+    localStorage.setItem(
+      "total",
+      JSON.stringify(total ? +total + item.price : item.price)
+    );
+    changeTotal(total ? +total + item.price : item.price);
+  };
 
   const dec = () => {
-    setCount(prev => prev > 1 ? prev - 1 : 1)
-    const total = localStorage.getItem("total")
-    
-    count > 1 && changeTotal(total ? +total - item.price : item.price)
-    localStorage.setItem("total", JSON.stringify(total ? +total - item.price : item.price))
-  }
+    setCount((prev) => (prev > 1 ? prev - 1 : 1));
+    const total = localStorage.getItem("total");
+
+    count > 1 && changeTotal(total ? +total - item.price : item.price);
+    localStorage.setItem(
+      "total",
+      JSON.stringify(total ? +total - item.price : item.price)
+    );
+  };
   return (
     <div className="flex flex-col bg-white rounded-[30px] p-[18px] min-w-[630px]">
       <div className="flex items-center relative gap-5">
@@ -59,12 +64,24 @@ const CartItem = ({ item, deleteItem, changeTotal }: IProps) => {
       </div>
       <div className="w-full flex justify-between mt-3">
         <div className="flex gap-5 items-center">
-          <div onClick={dec} className="bg-[#FFCE7F] rounded-full w-[30px] h-[30px] flex justify-center items-center text-lg font-bold"><span>-</span></div>
+          <div
+            onClick={dec}
+            className="bg-[#FFCE7F] cursor-pointer rounded-full w-[30px] h-[30px] flex justify-center items-center text-lg font-bold"
+          >
+            <span>-</span>
+          </div>
           <span className="text-lg font-bold">{count}</span>
-          <div onClick={inc} className="bg-[#FFCE7F] rounded-full w-[30px] h-[30px] flex justify-center items-center text-lg font-bold"><span>+</span></div>
+          <div
+            onClick={inc}
+            className="bg-[#FFCE7F] cursor-pointer rounded-full w-[30px] h-[30px] flex justify-center items-center text-lg font-bold"
+          >
+            <span>+</span>
+          </div>
         </div>
 
-        <span className="font-semibold tex-[#1C1C27] text-lg">{item.price} ₽</span>
+        <span className="font-semibold tex-[#1C1C27] text-lg">
+          {item.price} ₽
+        </span>
       </div>
     </div>
   );

@@ -28,7 +28,7 @@ const Cart = () => {
 
   const deleteItem = (item: Item) => {
     setCart((prev) => prev.filter((value) => value !== item));
-    setTotal(prev => prev - item.price)
+    setTotal((prev) => prev - item.price);
     localStorage.setItem(
       "cart",
       JSON.stringify(cart.filter((value) => value !== item))
